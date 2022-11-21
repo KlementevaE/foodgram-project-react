@@ -1,33 +1,34 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
     email = models.EmailField(
+        verbose_name=_('tmail'),
         max_length=254,
-        verbose_name='Email',
     )
     username = models.CharField(
+        verbose_name=_('username'),
         max_length=150,
         unique=True,
-        verbose_name='Логин',
     )
     first_name = models.CharField(
+        verbose_name=_('first_name'),
         max_length=150,
-        verbose_name='Имя',
     )
     last_name = models.CharField(
+        verbose_name=_('last_name'),
         max_length=150,
-        verbose_name='Фамилия',
     )
     password = models.CharField(
+        verbose_name=_('password'),
         max_length=150,
-        verbose_name='Пароль',
     )
 
     class Meta:
-        verbose_name = "Пользователь"
-        verbose_name_plural = "Пользователи"
+        verbose_name = _('User')
+        verbose_name_plural = _('Users')
         ordering = ['-pk']
 
     def __str__(self):
@@ -37,20 +38,20 @@ class User(AbstractUser):
 class Subscribe(models.Model):
     user = models.ForeignKey(
         User,
+        verbose_name=_('subsriber'),
         on_delete=models.CASCADE,
         related_name='subscriber',
-        verbose_name='ID подписчика',
     )
     author = models.ForeignKey(
         User,
+        verbose_name=_('author'),
         on_delete=models.CASCADE,
         related_name='author',
-        verbose_name='ID автора',
     )
 
     class Meta:
-        verbose_name = 'Подписка'
-        verbose_name_plural = 'Подписки'
+        verbose_name = _('Subscriptions')
+        verbose_name_plural = _('Subscriptions')
         ordering = ['-pk']
         constraints = [
             models.UniqueConstraint(fields=['user', 'author'],
