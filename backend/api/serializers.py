@@ -219,7 +219,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
         if len(ids) != len(set(ids)):
             raise serializers.ValidationError('Ингредиенты в рецепте'
                                               ' должны быть уникальными')
-        if len(ids) != len(Ingredient.objects.filter(id__in=ids)):
+        if len(ids) != Ingredient.objects.filter(id__in=ids).count():
             raise serializers.ValidationError('Указан неверный id ингредиента')
         if data.get('cooking_time') < 1:
             raise serializers.ValidationError('Время приготовления должно быть'
