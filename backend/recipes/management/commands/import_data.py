@@ -1,16 +1,10 @@
-from django.core.management.base import BaseCommand
-
 import csv
 import os
-
-
+from django.core.management.base import BaseCommand
 from foodgram.settings import BASE_DIR
 from recipes.models import Ingredient
 
-
 STATIC_DATA = os.path.dirname(BASE_DIR) + r'/data'
-
-
 INGREDIENT_FILE = STATIC_DATA + r'/ingredients.csv'
 
 

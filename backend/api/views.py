@@ -7,10 +7,10 @@ from django_filters.rest_framework import DjangoFilterBackend
 from djoser import utils
 from djoser.conf import settings
 from djoser.views import TokenCreateView, UserViewSet
+from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
 from rest_framework import filters, permissions, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
 from users.models import Subscribe, User
 
 from .filters import RecipeFilter

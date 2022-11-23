@@ -99,8 +99,7 @@ class SubscribeSerializer(CustomUserSerializer):
 
     def get_recipes_count(self, obj):
         author = obj.author
-        count = author.recipes.count()
-        return count
+        return author.recipes.count()
 
 
 class Base64ImageField(serializers.ImageField):
@@ -242,8 +241,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
         return ingredient_ids
 
     def update_tags(self, tags):
-        tag_id = [tag.id for tag in tags]
-        return tag_id
+        return [tag.id for tag in tags]
 
     def create(self, validated_data):
         ingredients = validated_data.pop('recipeingredient')
