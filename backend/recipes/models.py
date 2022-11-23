@@ -1,16 +1,15 @@
+from colorfield.fields import ColorField
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-from colorfield.fields import ColorField
-
 from users.models import User
 
 
 COLOR_PALETTE = [
-        ("#E26C2D", "orange", ),
-        ("#86D83B", "green", ),
-        ("#790CD4", "purple", ),
-    ]
+    ("#E26C2D", "orange", ),
+    ("#86D83B", "green", ),
+    ("#790CD4", "purple", ),
+]
 
 
 class Tag(models.Model):

@@ -10,6 +10,8 @@ from djoser.views import TokenCreateView, UserViewSet
 from rest_framework import filters, permissions, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
+from users.models import Subscribe, User
 
 from .filters import RecipeFilter
 from .pagination import CustomPagination
@@ -18,8 +20,6 @@ from .serializers import (CustomUserSerializer, IngredientSerializer,
                           RecipeCreateUpdateSerializer, RecipeReadSerializer,
                           RecipeSubscribeFavoriteCartSerializer,
                           SubscribeSerializer, TagSerializer)
-from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
-from users.models import Subscribe, User
 
 
 class CustomTokenCreateView(TokenCreateView):
@@ -166,11 +166,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
     def download_shopping_cart(self, request):
         sum_ingredients = Recipe.objects.filter(
-            cart__user=self.request.user
-            ).values_list(
+            cart__user=self.request.user).values_list(
                 'recipeingredient__ingredient__name',
-                'recipeingredient__ingredient__measurement_unit'
-                ).annotate(amount=Sum('recipeingredient__amount'))
+                'recipeingredient__ingredient__measurement_unit').annotate(
+                    amount=Sum('recipeingredient__amount'))
         nowtime = datetime.datetime.now().strftime("%d/%m/%Y")
         list_ingredients = f'Foodgram {nowtime}.\n'
         count = 1

@@ -4,11 +4,10 @@ import logging
 from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
-from rest_framework import serializers
-
 from foodgram.settings import REST_FRAMEWORK
 from recipes.models import (Cart, Favorite, Ingredient, Recipe,
                             RecipeIngredient, Tag)
+from rest_framework import serializers
 from users.models import Subscribe, User
 
 
