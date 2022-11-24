@@ -9,7 +9,7 @@ STATIC_DATA = settings.BASE_DIR
 
 class Command(BaseCommand):
     def handle(self, *args, **kwargs):
-        with open('../../../data/ingredients.csv') as f:
+        with open('data/ingredients.csv') as f:
             reader = csv.reader(f)
             next(reader, None)
             ingredient_list = [
