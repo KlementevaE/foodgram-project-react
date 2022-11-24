@@ -3,8 +3,7 @@ import csv
 from django.core.management.base import BaseCommand
 from recipes.models import Ingredient
 
-STATIC_DATA = 'home/admin/data'
-INGREDIENT_FILE = STATIC_DATA + r'/ingredients.csv'
+INGREDIENT_FILE = 'home/admin/data/ingredients.csv'
 
 
 class Command(BaseCommand):
