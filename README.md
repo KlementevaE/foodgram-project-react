@@ -95,7 +95,6 @@ response example:
     "cooking_time": 1
 }
 ``` 
-
 ### Автор
 Клементьева Евгения
 
