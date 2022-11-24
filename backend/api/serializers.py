@@ -4,11 +4,12 @@ import logging
 from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
-from foodgram.settings import REST_FRAMEWORK
 from recipes.models import (Cart, Favorite, Ingredient, Recipe,
                             RecipeIngredient, Tag)
 from rest_framework import serializers
 from users.models import Subscribe, User
+
+from .pagination import PAGE_SIZE
 
 
 class CustomUserSerializer(UserSerializer):
@@ -86,12 +87,12 @@ class SubscribeSerializer(CustomUserSerializer):
         author = obj.author
         recipes_limit = request.query_params.get('recipes_limit')
         if recipes_limit is None:
-            limit = REST_FRAMEWORK['PAGE_SIZE']
+            limit = PAGE_SIZE
         else:
             try:
                 limit = int(recipes_limit)
             except ValueError as exc:
-                limit = REST_FRAMEWORK['PAGE_SIZE']
+                limit = PAGE_SIZE
                 logging.exception(f'Параметр recipes_limit должен'
                                   f' быть числом: {exc}')
         recipes = author.recipes.all()[:limit]
