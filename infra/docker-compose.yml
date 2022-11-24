@@ -8,7 +8,7 @@ services:
       - ./.env
 
   backend:
-    image: evgeniyaklem/foodgram:latest
+    image: evgeniyaklem/foodgram_backend:latest
     restart: unless-stopped
     volumes:
       - static_value:/app/static/
@@ -19,9 +19,7 @@ services:
       - ./.env
 
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: evgeniyaklem/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
