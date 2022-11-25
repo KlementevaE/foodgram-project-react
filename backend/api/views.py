@@ -101,14 +101,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Recipe.objects.all()
-    pagination_class = None
-    # pagination_class = CustomPagination
+    pagination_class = CustomPagination
     permission_classes = (IsAuthOrReadOnly,)
     filter_backends = (DjangoFilterBackend,)
     filterset_class = RecipeFilter
 
     def get_serializer_class(self):
-        if self.action == 'favorite' or self.action == 'favorites':
+        if self.action == 'favorite':
             return RecipeSubscribeFavoriteCartSerializer
         if self.action == 'shopping_cart':
             return RecipeSubscribeFavoriteCartSerializer
@@ -142,17 +141,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
             raise serializers.ValidationError('Такого рецепта нет в избранном')
         favorite.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-
-    @action(detail=False)
-    def favorites(self, request):
-        user = self.request.user
-        new_queryset = user.favorite.all()
-        page = self.paginate_queryset(new_queryset)
-        if page is not None:
-            serializer = self.get_serializer(page, many=True)
-            return self.get_paginated_response(serializer.data)
-        serializer = self.get_serializer(new_queryset, many=True)
-        return Response(serializer.data)
 
     @action(detail=True, methods=('POST', 'DELETE'))
     def shopping_cart(self, request, pk):
