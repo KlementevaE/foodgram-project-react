@@ -8,12 +8,12 @@ from djoser import utils
 from djoser.conf import settings
 from djoser.views import TokenCreateView, UserViewSet
 from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
-from rest_framework import filters, permissions, serializers, status, viewsets
+from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from users.models import Subscribe, User
 
-from .filters import RecipeFilter
+from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly
 from .serializers import (CustomUserSerializer, IngredientSerializer,
@@ -81,8 +81,8 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
-    filter_backends = (filters.SearchFilter,)
-    search_fields = ('^name',)
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = IngredientFilter
     pagination_class = None
 
 
@@ -103,9 +103,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     pagination_class = CustomPagination
     permission_classes = (IsAuthOrReadOnly,)
-    filter_backends = (DjangoFilterBackend, filters.SearchFilter)
+    filter_backends = (DjangoFilterBackend,)
     filterset_class = RecipeFilter
-    search_fields = ('ingredients__^name',)
 
     def get_serializer_class(self):
         if self.action == 'favorite':
