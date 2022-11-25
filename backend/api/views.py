@@ -3,7 +3,7 @@ import datetime
 from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
-# from django_filters.rest_framework import DjangoFilterBackend
+from django_filters.rest_framework import DjangoFilterBackend
 from djoser import utils
 from djoser.conf import settings
 from djoser.views import TokenCreateView, UserViewSet
@@ -13,7 +13,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from users.models import Subscribe, User
 
-# from .filters import RecipeFilter
+from .filters import RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly
 from .serializers import (CustomUserSerializer, IngredientSerializer,
@@ -104,8 +104,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
     # pagination_class = CustomPagination
     pagination_class = None
     permission_classes = (IsAuthOrReadOnly,)
-    # filter_backends = (DjangoFilterBackend,)
-    # filterset_class = RecipeFilter
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = RecipeFilter
 
     def get_serializer_class(self):
         if self.action == 'favorite':
