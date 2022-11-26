@@ -176,6 +176,5 @@ class RecipeViewSet(viewsets.ModelViewSet):
         for ingr in sum_ingredients:
             list_ingredients += (
                 f'* {ingr["recipeingredient__ingredient__name"]}'
-                f'- {ingr["recipeingredient__amount__sum"]} '
-                f'{ingr["recipeingredient__ingredient__measurement_unit"]}\n')
+                f'- {ingr["recipeingredient__amount__sum"]}\n')
         return HttpResponse(list_ingredients, content_type='text/plain')
