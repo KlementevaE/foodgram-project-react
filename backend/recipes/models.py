@@ -1,4 +1,3 @@
-from colorfield.fields import ColorField
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
@@ -17,9 +16,9 @@ class Tag(models.Model):
         verbose_name=_('name'),
         max_length=200,
     )
-    color = ColorField(
+    color = models.CharField(
         verbose_name=_('color in HEX'),
-        samples=COLOR_PALETTE,
+        choices=COLOR_PALETTE,
     )
     slug = models.SlugField(
         verbose_name=_('slug'),
