@@ -169,12 +169,12 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def download_shopping_cart(self, request):
         sum_ingredients = Recipe.objects.filter(
             cart__user=self.request.user).values(
-                'recipeingredient__ingredient__name').annotate(
+                'recipeingredient__ingredient__id').annotate(
                     Sum('recipeingredient__amount'))
         nowtime = datetime.datetime.now().strftime("%d/%m/%Y")
         list_ingredients = f'Foodgram {nowtime}.\n'
         for ingr in sum_ingredients:
             list_ingredients += (
-                f'* {ingr["recipeingredient__ingredient__name"]}'
+                f'* {ingr["recipeingredient__ingredient__id"]}'
                 f'- {ingr["recipeingredient__amount__sum"]}\n')
         return HttpResponse(list_ingredients, content_type='text/plain')
