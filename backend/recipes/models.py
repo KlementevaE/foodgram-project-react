@@ -162,7 +162,6 @@ class Cart(models.Model):
         User,
         verbose_name=_('user'),
         on_delete=models.CASCADE,
-        related_name='cart',
     )
     recipe = models.ForeignKey(
         Recipe,
