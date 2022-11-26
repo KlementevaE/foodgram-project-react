@@ -4,9 +4,9 @@ from django.utils.translation import gettext_lazy as _
 from users.models import User
 
 COLOR_PALETTE = [
-    ("#E26C2D", "orange", ),
-    ("#86D83B", "green", ),
-    ("#790CD4", "purple", ),
+    ('#E26C2D', 'orange', ),
+    ('#86D83B', 'green', ),
+    ('#790CD4', 'purple', ),
 ]
 
 
@@ -20,6 +20,7 @@ class Tag(models.Model):
         verbose_name=_('color in HEX'),
         max_length=7,
         choices=COLOR_PALETTE,
+        default='#E26C2D',
     )
     slug = models.SlugField(
         verbose_name=_('slug'),
