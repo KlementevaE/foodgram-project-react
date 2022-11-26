@@ -6,13 +6,13 @@ from .models import Cart, Favorite, Ingredient, Recipe, RecipeIngredient, Tag
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'measurement_unit')
-    list_filter = ('name',)
+    filter_vertical = ('name',)
 
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
     list_display = ('pk', 'author', 'name', 'count_favorite')
-    list_filter = ('author', 'name', 'tags')
+    filter_vertical = ('author', 'name', 'tags')
 
     def count_favorite(self, obj):
         return obj.favorite.count()
