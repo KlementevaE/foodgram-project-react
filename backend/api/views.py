@@ -13,7 +13,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from users.models import Subscribe, User
 
-from .filters import RecipeFilter
+from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly
 from .serializers import (CustomUserSerializer, IngredientSerializer,
@@ -81,8 +81,8 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
 
     queryset = Ingredient.objects.all()
     serializer_class = IngredientSerializer
-    # filter_backends = (DjangoFilterBackend,)
-    # filterset_class = IngredientFilter
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = IngredientFilter
     pagination_class = None
 
 
@@ -172,6 +172,15 @@ class RecipeViewSet(viewsets.ModelViewSet):
                 'recipeingredient__ingredient__name',
                 'recipeingredient__ingredient__measurement_unit').annotate(
                     amount=Sum('recipeingredient__amount'))
+        print("1", Recipe.objects.filter(
+            cart__user=self.request.user).values_list(
+                'recipeingredient__ingredient__name',
+                'recipeingredient__ingredient__measurement_unit'))
+        print("2", Recipe.objects.filter(
+            cart__user=self.request.user).values_list(
+                'recipeingredient__ingredient__name',
+                'recipeingredient__ingredient__measurement_unit').annotate(
+                    amount=Sum('recipeingredient__amount')))
         nowtime = datetime.datetime.now().strftime("%d/%m/%Y")
         list_ingredients = f'Foodgram {nowtime}.\n'
         count = 1
