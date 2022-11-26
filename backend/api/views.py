@@ -168,10 +168,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
     def download_shopping_cart(self, request):
         sum_ingredients = Recipe.objects.filter(
-            cart__user=self.request.user).values(
+            cart__user=self.request.user).values_list(
                 'recipeingredient__ingredient__name',
                 'recipeingredient__ingredient__measurement_unit').annotate(
-                    amount=Sum('recipeingredient__amount'))
+                    sum_amount=Sum('recipeingredient__amount'))
         nowtime = datetime.datetime.now().strftime("%d/%m/%Y")
         list_ingredients = f'Foodgram {nowtime}.\n'
         count = 1
