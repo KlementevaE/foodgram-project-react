@@ -1,11 +1,11 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 
 
 class User(AbstractUser):
     email = models.EmailField(
-        verbose_name=_('tmail'),
+        verbose_name=_('email'),
         max_length=254,
     )
     username = models.CharField(
@@ -14,11 +14,11 @@ class User(AbstractUser):
         unique=True,
     )
     first_name = models.CharField(
-        verbose_name=_('first_name'),
+        verbose_name=_('first name'),
         max_length=150,
     )
     last_name = models.CharField(
-        verbose_name=_('last_name'),
+        verbose_name=_('last name'),
         max_length=150,
     )
     password = models.CharField(
@@ -27,8 +27,8 @@ class User(AbstractUser):
     )
 
     class Meta:
-        verbose_name = _('User')
-        verbose_name_plural = _('Users')
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
         ordering = ['-pk']
 
     def __str__(self):
@@ -50,8 +50,8 @@ class Subscribe(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Subscriptions')
-        verbose_name_plural = _('Subscriptions')
+        verbose_name = _('subscriptions')
+        verbose_name_plural = _('subscriptions')
         ordering = ['-pk']
         constraints = [
             models.UniqueConstraint(fields=['user', 'author'],

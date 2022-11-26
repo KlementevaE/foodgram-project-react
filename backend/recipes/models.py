@@ -1,7 +1,7 @@
 from colorfield.fields import ColorField
 from django.core.validators import MinValueValidator
 from django.db import models
-from django.utils.translation import gettext as _
+from django.utils.translation import gettext_lazy as _
 from users.models import User
 
 COLOR_PALETTE = [
@@ -29,8 +29,8 @@ class Tag(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Tag')
-        verbose_name_plural = _('Tags')
+        verbose_name = _('tag')
+        verbose_name_plural = _('tags')
         ordering = ['name']
 
     def __str__(self):
@@ -49,8 +49,8 @@ class Ingredient(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Ingredient')
-        verbose_name_plural = _('Ingredients')
+        verbose_name = _('ingredient')
+        verbose_name_plural = _('ingredients')
         ordering = ['name']
 
     def __str__(self):
@@ -94,8 +94,8 @@ class Recipe(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Recipe')
-        verbose_name_plural = _('Recipes')
+        verbose_name = _('recipe')
+        verbose_name_plural = _('recipes')
         ordering = ['-pub_date']
 
     def __str__(self):
@@ -121,8 +121,8 @@ class RecipeIngredient(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Recipe and ingredient'),
-        verbose_name_plural = _('Recipes and ingredients'),
+        verbose_name = _('recipe and ingredient'),
+        verbose_name_plural = _('recipes and ingredients'),
         ordering = ['-pk']
         constraints = [
             models.UniqueConstraint(fields=['recipe', 'ingredient'],
@@ -144,8 +144,8 @@ class Favorite(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Favourites')
-        verbose_name_plural = _('Favourites')
+        verbose_name = _('favourites')
+        verbose_name_plural = _('favourites')
         ordering = ['-pk']
         constraints = [
             models.UniqueConstraint(fields=['user', 'recipe'],
@@ -171,8 +171,8 @@ class Cart(models.Model):
     )
 
     class Meta:
-        verbose_name = _('Shopping cart')
-        verbose_name_plural = _('Shopping cart')
+        verbose_name = _('shopping cart')
+        verbose_name_plural = _('shopping cart')
         ordering = ['-pk']
         constraints = [
             models.UniqueConstraint(fields=['user', 'recipe'],
