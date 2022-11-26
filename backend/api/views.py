@@ -13,7 +13,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from users.models import Subscribe, User
 
-from .filters import IngredientFilter, RecipeFilter
+from .filters import RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly
 from .serializers import (CustomUserSerializer, IngredientSerializer,
