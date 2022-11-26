@@ -18,6 +18,7 @@ class Tag(models.Model):
     )
     color = models.CharField(
         verbose_name=_('color in HEX'),
+        max_length=7,
         choices=COLOR_PALETTE,
     )
     slug = models.SlugField(
