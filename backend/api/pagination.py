@@ -1,6 +1,6 @@
-from rest_framework.pagination import PageNumberPagination  # isort: off
-
-from foodgram.settings import REST_FRAMEWORK
+from rest_framework.pagination import PageNumberPagination
+# isort: skip
+from foodgram.settings import REST_FRAMEWORK  # isort: skip
 
 
 class CustomPagination(PageNumberPagination):

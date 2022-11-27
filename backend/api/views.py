@@ -8,10 +8,11 @@ from djoser.conf import settings
 from djoser.views import TokenCreateView, UserViewSet
 from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import action
-from rest_framework.response import Response  # isort: off
+from rest_framework.response import Response
 
-from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
-from users.models import Subscribe, User
+from recipes.models import (Cart, Favorite,  # isort: skip
+                            Ingredient, Recipe, Tag)  # isort: skip
+from users.models import Subscribe, User  # isort: skip
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly
