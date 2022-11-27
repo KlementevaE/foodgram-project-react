@@ -1,8 +1,8 @@
 from django_filters import FilterSet
 from django_filters.rest_framework import filters
 from recipes.models import Ingredient, Recipe
-# isort: split
-from users.models import User
+
+from users.models import User  # isort: split
 
 
 class IngredientFilter(FilterSet):

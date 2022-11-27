@@ -1,8 +1,8 @@
 import djoser.views as djoser_views
 from django.urls import include, path, re_path
 from rest_framework import routers
-# isort: split
-import api.views as views
+
+import api.views as views  # isort: split
 
 
 router = routers.DefaultRouter()

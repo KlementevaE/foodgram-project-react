@@ -1,6 +1,6 @@
 from rest_framework.pagination import PageNumberPagination
-# isort: split
-from foodgram.settings import REST_FRAMEWORK
+
+from foodgram.settings import REST_FRAMEWORK  # isort: split
 
 
 class CustomPagination(PageNumberPagination):
