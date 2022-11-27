@@ -123,8 +123,6 @@ class RecipeIngredient(models.Model):
     )
 
     class Meta:
-        verbose_name = _('recipe and ingredient'),
-        verbose_name_plural = verbose_name,
         ordering = ['-pk']
         constraints = [
             models.UniqueConstraint(fields=['recipe', 'ingredient'],
