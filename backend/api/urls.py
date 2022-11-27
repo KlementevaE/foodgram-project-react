@@ -1,8 +1,8 @@
 import djoser.views as djoser_views
 from django.urls import include, path, re_path
 from rest_framework import routers
-# isort: skip
-import api.views as views  # isort: skip
+# isort: off
+import api.views as views  # isort: off
 
 router = routers.DefaultRouter()
 router.register(r'ingredients', views.IngredientViewSet)

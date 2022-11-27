@@ -1,8 +1,8 @@
 from django_filters import FilterSet
 from django_filters.rest_framework import filters
 from recipes.models import Ingredient, Recipe
-# isort: skip
-from users.models import User  # isort: skip
+# isort: off
+from users.models import User  # isort: off
 
 
 class IngredientFilter(FilterSet):

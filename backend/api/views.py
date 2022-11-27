@@ -10,9 +10,9 @@ from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from recipes.models import (Cart, Favorite,  # isort: skip
-                            Ingredient, Recipe, Tag)  # isort: skip
-from users.models import Subscribe, User  # isort: skip
+from recipes.models import (Cart, Favorite,  # isort: off
+                            Ingredient, Recipe, Tag)  # isort: off
+from users.models import Subscribe, User  # isort: off
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly
