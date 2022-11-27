@@ -1,5 +1,6 @@
 import datetime
 
+from django.db.models import Sum
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django_filters.rest_framework import DjangoFilterBackend
@@ -167,27 +168,17 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @action(detail=False, permission_classes=(permissions.IsAuthenticated,))
     def download_shopping_cart(self, request):
-        ingredients = Recipe.objects.filter(
+        sum_ingredients = Recipe.objects.filter(
             cart__user=self.request.user).values(
                 'recipeingredient__ingredient__name',
-                'recipeingredient__amount',
                 'recipeingredient__ingredient__measurement_unit').order_by(
-                    'recipeingredient__ingredient__name')
-        sum_ingredients = {}
-        for ingr in ingredients:
-            name = ingr['recipeingredient__ingredient__name']
-            amount = ingr['recipeingredient__amount']
-            measurement_unit = ingr[
-                'recipeingredient__ingredient__measurement_unit']
-            if name in sum_ingredients.keys():
-                sum_ingredients[name]['amount'] += amount
-            else:
-                sum_ingredients[name] = {
-                    'amount': amount,
-                    'measurement_unit': measurement_unit}
+                    'recipeingredient__amount').annotate(
+                    Sum('recipeingredient__amount'))
         nowtime = datetime.datetime.now().strftime("%d/%m/%Y")
         list_ingredients = f'Foodgram {nowtime}.\n'
-        for key, value in sum_ingredients.items():
+        for ingr in sum_ingredients:
             list_ingredients += (
-                f'* {key} - {value["amount"]} {value["measurement_unit"]}\n')
+                f'* {ingr["recipeingredient__ingredient__name"]} - '
+                f'{ingr["recipeingredient__amount__sum"]} '
+                f'{ingr["recipeingredient__ingredient__measurement_unit"]}\n')
         return HttpResponse(list_ingredients, content_type='text/plain')
