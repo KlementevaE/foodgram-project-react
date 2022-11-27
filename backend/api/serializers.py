@@ -5,10 +5,10 @@ from django.core.files.base import ContentFile
 from django.shortcuts import get_object_or_404
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from rest_framework import serializers
-# isort: off
-from foodgram.settings import REST_FRAMEWORK  # isort: off
-from recipes.models import (Cart, Favorite, Ingredient, Recipe,  # isort: off
-                            RecipeIngredient, Tag)  # isort: off
+# isort: split
+from foodgram.settings import REST_FRAMEWORK
+from recipes.models import (Cart, Favorite, Ingredient, Recipe,
+                            RecipeIngredient, Tag)
 from users.models import Subscribe, User
 
 
