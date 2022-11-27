@@ -1,6 +1,6 @@
 import djoser.views as djoser_views
 from django.urls import include, path, re_path
-from rest_framework import routers
+from rest_framework import routers  # isort: off
 
 import api.views as views
 

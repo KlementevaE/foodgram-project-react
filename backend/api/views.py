@@ -8,8 +8,8 @@ from djoser.conf import settings
 from djoser.views import TokenCreateView, UserViewSet
 from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import action
-from rest_framework.response import Response
-# isort: off
+from rest_framework.response import Response  # isort: off
+
 from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
 from users.models import Subscribe, User
 from .filters import IngredientFilter, RecipeFilter
