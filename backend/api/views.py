@@ -172,7 +172,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
             cart__user=self.request.user).values(
                 'recipeingredient__ingredient__name',
                 'recipeingredient__ingredient__measurement_unit').order_by(
-                    'recipeingredient__amount').annotate(
+                    'recipeingredient__ingredient__name').annotate(
                     Sum('recipeingredient__amount'))
         nowtime = datetime.datetime.now().strftime("%d/%m/%Y")
         list_ingredients = f'Foodgram {nowtime}.\n'
