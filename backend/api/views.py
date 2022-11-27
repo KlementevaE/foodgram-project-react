@@ -6,12 +6,12 @@ from django_filters.rest_framework import DjangoFilterBackend
 from djoser import utils
 from djoser.conf import settings
 from djoser.views import TokenCreateView, UserViewSet
-from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
 from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+# isort: off
+from recipes.models import Cart, Favorite, Ingredient, Recipe, Tag
 from users.models import Subscribe, User
-
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly

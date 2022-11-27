@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+# isort: skip
 from users.models import User
 
 COLOR_PALETTE = [
@@ -123,7 +124,7 @@ class RecipeIngredient(models.Model):
 
     class Meta:
         verbose_name = _('recipe and ingredient'),
-        verbose_name_plural = _('recipes and ingredients'),
+        verbose_name_plural = verbose_name,
         ordering = ['-pk']
         constraints = [
             models.UniqueConstraint(fields=['recipe', 'ingredient'],
