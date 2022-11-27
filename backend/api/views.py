@@ -9,10 +9,10 @@ from djoser.views import TokenCreateView, UserViewSet
 from rest_framework import permissions, serializers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-# isort: split
-from recipes.models import (Cart, Favorite,
-                            Ingredient, Recipe, Tag)
-from users.models import Subscribe, User  # isort: off
+
+from recipes.models import (Cart, Favorite,  # isort: split
+                            Ingredient, Recipe, Tag)  # isort: split
+from users.models import Subscribe, User  # isort: split
 from .filters import IngredientFilter, RecipeFilter
 from .pagination import CustomPagination
 from .permissions import IsAuthOrReadOnly
