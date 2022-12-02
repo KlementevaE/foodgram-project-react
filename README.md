@@ -98,9 +98,5 @@ response example:
 ### Автор
 Клементьева Евгения
 
-Сервер: 158.160.4.38
-Администрирование: 
-    логин - admin
-    пароль - 12345
 
 ![foodgram_workflow](https://github.com/KlementevaE/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
