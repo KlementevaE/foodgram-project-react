@@ -97,6 +97,3 @@ response example:
 ``` 
 ### Автор
 Клементьева Евгения
-
-
-![foodgram_workflow](https://github.com/KlementevaE/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg)
